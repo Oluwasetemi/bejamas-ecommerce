@@ -12,8 +12,29 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsxImportSource": "@emotion/react",
+    "jsx": "preserve",
+    "types": [
+      "jest",
+      "react",
+      "cypress",
+      "@testing-library/react",
+      "@testing-library/jest-dom",
+      "@testing-library/cypress"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/styles/*": ["styles/*"]
+    }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "./test/setup-env.ts"
+    // "cypress"
+  ],
   "exclude": ["node_modules"]
+  // "typeRoots": ["node_modules/@types"]
 }

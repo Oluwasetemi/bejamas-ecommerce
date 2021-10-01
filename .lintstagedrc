@@ -1,0 +1,9 @@
+{
+	"*.js|ts|tsx": [
+		"yarn lint:eslint --fix"
+	],
+	"*.+(js|json|ts|tsx|ts)": [
+		"yarn validate",
+		"git add ."
+	]
+}
