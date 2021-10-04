@@ -1,6 +1,6 @@
 {
 	"*.js|ts|tsx": [
-		"yarn lint:eslint --fix"
+		"yarn lint:eslint"
 	],
 	"*.+(js|json|ts|tsx|ts)": [
 		"yarn validate",

@@ -6,6 +6,6 @@
  */
 // @ts-ignore
 module.exports = (on: any, config: any) => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
+	// `on` is used to hook into various events Cypress emits
+	// `config` is the resolved Cypress config
 };
