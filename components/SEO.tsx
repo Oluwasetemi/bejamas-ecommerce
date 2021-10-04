@@ -23,6 +23,7 @@ export default function SEO() {
 				href="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
 			/>
 
+			{/* this decreased the performance in lighthouse for mobile */}
 			<link rel="preconnect" href="https://images.pexels.com" />
 			<link rel="dns-prefetch" href="https://images.pexels.com" />
 		</Head>
