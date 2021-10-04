@@ -57,33 +57,7 @@ module.exports = {
       },
     ],
     'import/no-unresolved': 'error',
-    'import/order': [
-      'error',
-      {
-        groups: [
-          'builtin',
-          'internal',
-          'external',
-          'parent',
-          'sibling',
-          'index',
-          'object',
-        ],
-        pathGroups: [
-          {
-            pattern: '@/*/**',
-            group: 'internal',
-            position: 'before',
-          },
-          {
-            pattern: 'react',
-            group: 'builtin',
-            position: 'before',
-          },
-        ],
-        // pathGroupsExcludedImportTypes: ['builtin'],
-      },
-    ],
+    'import/order': 'error',
     'jest/valid-describe': 'off',
     'jest/valid-expect': 'off',
     'jest/no-conditional-expect': 'off',

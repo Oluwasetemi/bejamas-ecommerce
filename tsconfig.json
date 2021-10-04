@@ -20,12 +20,12 @@
       "cypress",
       "@testing-library/react",
       "@testing-library/jest-dom",
-      "@testing-library/cypress"
+      "@testing-library/cypress",
+      "@emotion/react/types/css-prop"
     ],
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/styles/*": ["styles/*"]
+      "@/*": ["components/*", "styles/*"]
     }
   },
   "include": [

@@ -1,4 +1,7 @@
 {
 	"presets": ["next/babel"],
-	"plugins": ["@emotion/babel-plugin", "@babel/plugin-transform-runtime"]
+	"plugins": [
+		["@emotion/babel-plugin", { "runtime": "automatic" }],
+		"@babel/plugin-transform-runtime"
+	]
 }
