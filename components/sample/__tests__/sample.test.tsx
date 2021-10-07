@@ -6,7 +6,6 @@ import Sample from '..';
 it('should render the sample component', async () => {
 	render(<Sample />);
 	let helloEl = await screen.findByText(/hello/i);
-	// @ts-ignore
 	expect(helloEl).toBeInTheDocument();
 });
 
@@ -18,15 +17,18 @@ it('should test css presence in component', () => {
 	const Div = styled('div')`
 		float: left;
 		height: 80%;
+
 		&:hover {
 			width: 50px;
 		}
 		${Svg} {
 			fill: green;
 		}
+
 		span {
 			color: yellow;
 		}
+
 		@media screen and (max-width: 1200px) {
 			font-size: 14px;
 		}
@@ -87,9 +89,7 @@ it('should test css presence in component', () => {
 	//     </div>
 	//   </div>
 	// `);
-	// @ts-ignore
 	expect(firstChild).toHaveStyleRule('float', 'left');
-	// @ts-ignore
 	expect((firstChild as HTMLElement).querySelector('svg')).toHaveStyleRule(
 		'width',
 		'100%',

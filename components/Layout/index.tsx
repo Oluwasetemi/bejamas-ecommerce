@@ -12,6 +12,7 @@ const NavStyles = styled.nav`
 		align-items: center;
 		margin-bottom: 20px;
 	}
+
 	img[alt='logo'] {
 		width: 150px;
 		height: 25px;
@@ -51,7 +52,9 @@ function Nav() {
 				<FocusTrap active={all?.cartOpen} focusTrapOptions={{}}>
 					<div className="cart" onClick={toggleCart} tabIndex={4}>
 						<img src="./shopping-cart.svg" alt="cart" />{' '}
-						<b className="count ">{cart?.length}</b>
+						<b className="count" data-testid="cart count">
+							{cart?.length}
+						</b>
 						<Cart />
 					</div>
 				</FocusTrap>

@@ -1,9 +1,9 @@
 /* eslint-disable import/order */
 import styled from '@emotion/styled';
-import useWindowSize from 'hooks/useWindowSize';
 import React from 'react';
 import Modal from 'react-modal';
 import { OneProduct } from '.';
+import useWindowSize from '../../hooks/useWindowSize';
 import Filter from './Filter';
 import type { ProductType } from './OneProduct';
 import Pagination from './Pagination';
@@ -38,11 +38,13 @@ const ModalStyles = styled.div`
 	.modal-buttons {
 		display: flex;
 		gap: 10px;
+
 		button {
 			width: 100%;
-			border-radius: 0px;
+			border-radius: 0;
 			padding: 10px 5px;
 		}
+
 		button.save {
 			color: white;
 			background: black;
@@ -91,38 +93,48 @@ const AllProductStyles = styled.div`
 		justify-content: space-between;
 		align-items: center;
 	}
+
 	h2 {
 		font-weight: 700;
 	}
+
 	h2 span {
 		color: var(--secondaryText);
 		font-weight: 200;
 	}
+
 	.product-listing-and-filter {
 		display: grid;
 		grid-template-columns: 1fr 3fr;
+
 		/* justify-content: flex-start; */
 		margin-top: 30px;
 	}
+
 	.all-products {
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
-		gap: 0px 46px;
+		gap: 0 46px;
 	}
+
 	img[alt='sort-modal-button'] {
 		width: 30px;
 		height: 30px;
 	}
+
 	@media screen and (min-device-width: 320px) and (max-device-width: 768px) {
 		h2 {
 			font-size: 15px;
 		}
+
 		h2 span {
 			font-size: 15px;
 		}
+
 		.all-products {
 			grid-template-columns: 1fr;
 		}
+
 		.product-listing-and-filter {
 			grid-template-columns: 1fr;
 		}
@@ -130,6 +142,7 @@ const AllProductStyles = styled.div`
 `;
 
 type AllProductProps = {
+	setProducts: React.Dispatch<React.SetStateAction<ProductType[]>>;
 	products: ProductType[];
 	count: number;
 	page: number;
@@ -137,13 +150,10 @@ type AllProductProps = {
 	setCategory: React.Dispatch<React.SetStateAction<string[]>>;
 	priceRange: string;
 	setPriceRange: React.Dispatch<React.SetStateAction<string>>;
-	sortBy: string;
-	setSortBy: React.Dispatch<React.SetStateAction<string>>;
-	sort: string;
-	setSort: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export default function AllProduct({
+	setProducts,
 	products,
 	count,
 	page,
@@ -151,10 +161,6 @@ export default function AllProduct({
 	setCategory,
 	priceRange,
 	setPriceRange,
-	sortBy,
-	setSortBy,
-	sort,
-	setSort,
 }: AllProductProps) {
 	const { width } = useWindowSize();
 	let isMobile = width < 768;
@@ -192,12 +198,7 @@ export default function AllProduct({
 						loading="lazy"
 					/>
 				) : (
-					<Sort
-						sortBy={sortBy}
-						setSortBy={setSortBy}
-						sort={sort}
-						setSort={setSort}
-					/>
+					<Sort setProducts={setProducts} products={products} />
 				)}
 			</div>
 			<div className="product-listing-and-filter">
@@ -209,7 +210,7 @@ export default function AllProduct({
 						setPriceRange={setPriceRange}
 					/>
 				)}
-				<div className="all-products">
+				<div className="all-products" data-testid="products">
 					{products &&
 						products.map((product) => {
 							return (

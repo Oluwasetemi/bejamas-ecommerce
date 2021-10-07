@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
-import useWindowSize from 'hooks/useWindowSize';
-import React from 'react';
-import formatMoney from 'utils/formatMoney';
+// import React from 'react';
 import { useCart } from '../components/LocalState';
+import useWindowSize from '../hooks/useWindowSize';
+import formatMoney from '../utils/formatMoney';
 import { ProductCartProp } from './Products/Featured';
 
 type CartStyleProp = {
@@ -14,7 +14,8 @@ const CartStyles = styled.div<CartStyleProp>`
 	margin-top: 103px;
 	margin-right: 50px;
 	padding: 10px 30px;
-	position: relative;
+
+	/* position: relative; */
 	background: white;
 	position: fixed;
 	height: 40%;
@@ -23,6 +24,7 @@ const CartStyles = styled.div<CartStyleProp>`
 	width: 30%;
 	min-width: 430px;
 	${(props) => props.mobile && `min-width: 230px;`}
+
 	bottom: 0;
 	transform: translateX(150%);
 	transition: all 0.3s;
@@ -33,19 +35,20 @@ const CartStyles = styled.div<CartStyleProp>`
 	overflow: scroll;
 
 	${(props) => props.open && `transform: translateX(0);`}
-
 	header {
 		margin-bottom: 0.05em;
 		text-align: right;
 		font-size: 17px;
 		cursor: pointer;
 	}
+
 	ul {
 		margin: 0;
 		padding: 0;
 		list-style: none;
 		overflow: auto;
 	}
+
 	button {
 		width: 100%;
 		background: white;
@@ -94,12 +97,14 @@ const CartItemStyles = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	padding: 10px;
+
 	.left {
 		h3 {
 			margin-top: 5px;
 			margin-bottom: 5px;
 		}
 	}
+
 	.right {
 		img {
 			object-fit: cover;

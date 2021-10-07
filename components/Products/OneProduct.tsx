@@ -9,14 +9,16 @@ const OneProductStyles = styled.div`
 	flex-direction: column;
 	margin-bottom: 37px;
 	width: 100%;
+
 	img {
 		object-fit: cover;
-		width: 280px;
+		width: 286px;
 		height: 380px;
 	}
 
 	.button {
 		${buttonStyles}
+
 		margin-top: -30px;
 	}
 
@@ -29,12 +31,14 @@ const OneProductStyles = styled.div`
 	span {
 		margin-top: 6px;
 	}
+
 	span:last-of-type {
-		margin-top: 0px;
+		margin-top: 0;
 	}
+
 	span.best-seller {
 		background: var(--bg);
-		color: #000000;
+		color: #000;
 		margin-bottom: -25px;
 		z-index: 0;
 		margin-top: 0;
@@ -88,8 +92,12 @@ export default function OneProduct({ product }: { product: ProductType }) {
 				<img src={image} alt={product.name} loading="lazy" />
 			)}
 			<AddToCart product={cartDetails} />
-			<span className="category">{product.category}</span>
-			<h3 className="name">{product.name}</h3>
+			<span className="category" data-testid="category">
+				{product.category}
+			</span>
+			<h3 title="product-title" className="name">
+				{product.name}
+			</h3>
 			<span className="price">{formatMoney(product.price)}</span>
 		</OneProductStyles>
 	);

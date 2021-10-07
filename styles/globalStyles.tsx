@@ -5,6 +5,7 @@ export const globalStyles = (
 		styles={css`
 			@font-face {
 				font-family: Archivo;
+
 				/* src: url('./fonts/Archivo-Italic-VariableFont_wdth,wght.ttf'); */
 				src: url('./fonts/Archivo-VariableFont_wdth,wght.ttf');
 				font-style: normal;
@@ -16,7 +17,7 @@ export const globalStyles = (
 				--spacing: 30px;
 				--paddingLeft: 90px;
 				--paddingRight: 65px;
-				--bg: #ffffff;
+				--bg: #fff;
 				--primaryText: #656565;
 				--secondaryText: #9b9b9b;
 			}
@@ -63,17 +64,20 @@ export const globalStyles = (
 );
 
 export const buttonStyles = css`
-	background-color: #000000;
-	color: #ffffff;
+	background-color: #000;
+	color: #fff;
 	border: 1px solid transparent;
 	transition: all 0.1s linear;
+
 	/* margin: 3rem 0; */
 	padding: 0.5rem 2.5rem;
 	text-transform: uppercase;
 	letter-spacing: 2px;
+
 	&:hover {
 		box-shadow: 5px 5px 0 0 grey;
 		outline-offset: 1px;
+
 		/* border: 2px solid white; */
 		outline: 2px solid black;
 	}

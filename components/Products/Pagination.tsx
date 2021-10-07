@@ -7,15 +7,18 @@ import { perPage } from '../../config';
 const PaginationStyles = styled.div`
 	text-align: center;
 	margin-bottom: 40px;
+
 	span {
 		padding: 0.2em;
 		color: #b4b4b4;
 	}
+
 	a {
 		text-decoration: none;
 	}
+
 	a.current span {
-		color: #000000;
+		color: #000;
 	}
 `;
 

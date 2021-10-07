@@ -61,8 +61,6 @@ const FEATURED_PRODUCT = gql`
 `;
 
 const Home: NextPage = () => {
-	const [sortBy, setSortBy] = React.useState('price');
-	const [sort, setSort] = React.useState('ASC');
 	const [cat, setCat] = React.useState<string[]>([
 		'people',
 		'premium',
@@ -111,7 +109,11 @@ const Home: NextPage = () => {
 			priceUpper: priceUpper,
 		},
 	});
+	const [stateProduct, setProduct] = React.useState<ProductType[]>([]);
 
+	// sorting
+	let products = data && data.products;
+	let pages: number;
 	React.useEffect(() => {
 		if (page > pages) {
 			router.push({
@@ -119,46 +121,18 @@ const Home: NextPage = () => {
 				query: { page: pages },
 			});
 		}
-	}, [page, sort, sortBy]);
+		setProduct(products);
+	}, [products, page]);
 
-	function sortData(
-		data: ProductType[],
-		sortKey: string,
-		sortingDirection: string,
-	) {
-		// console.log(data, sortKey, sortingDirection);
-		// create a clean copy
-		let newCopy = data.slice(0);
-		newCopy.sort((productA: ProductType, productB: ProductType) => {
-			// @ts-ignore
-			let sortConditionA = productA[sortKey];
-			// @ts-ignore
-			let sortConditionB = productB[sortKey];
-
-			if (sortingDirection === 'ASC') {
-				if (sortConditionA < sortConditionB) return -1;
-				if (sortConditionA > sortConditionB) return 1;
-				return 0;
-			} else {
-				if (sortConditionA > sortConditionB) return 1;
-				if (sortConditionA < sortConditionB) return -1;
-				return 0;
-			}
-		});
-
-		return newCopy;
+	if (error) return <p data-testid="error">Error fetching data</p>;
+	if (loading) return <p data-testid="loading">Loading...</p>;
+	if (data.featured.length === 0) {
+		return <p data-testid="empty">No featured product Found </p>;
 	}
-
-	if (error) return <p>Error fetching data</p>;
-	if (loading) return <p>Loading...</p>;
-	if (data.featured.length === 0) return <p>No featured product Found </p>;
-
-	// sorting
-	let products = data.products;
 
 	const featuredProduct = data.featured[0];
 	const count = data.count.aggregate.count;
-	const pages = Math.ceil(count / perPage);
+	pages = Math.ceil(count / perPage);
 
 	return (
 		<div className="container">
@@ -168,17 +142,14 @@ const Home: NextPage = () => {
 			<hr />
 			{/* move and manage the props with context TODO: */}
 			<AllProduct
-				products={sortData(products, sortBy, sort)}
+				setProducts={setProduct}
+				products={stateProduct}
 				count={count}
 				page={Number(page)}
 				category={cat}
 				setCategory={setCat}
 				priceRange={priceRange}
 				setPriceRange={setPriceRange}
-				sortBy={sortBy}
-				setSortBy={setSortBy}
-				sort={sort}
-				setSort={setSort}
 			/>
 		</div>
 	);

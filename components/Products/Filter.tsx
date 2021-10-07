@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import useWindowSize from 'hooks/useWindowSize';
 import React from 'react';
+import useWindowSize from '../../hooks/useWindowSize';
 
 export function isChecked(value: string, from: Array<unknown>) {
 	return from.includes(value);
@@ -11,38 +11,44 @@ type FilterStyleProp = {
 };
 
 const FilterStyles = styled.div<FilterStyleProp>`
+	/* stylelint-disable */
 	padding: 0.5em;
 	padding-top: 0;
 	padding-left: 0;
 	padding-right: 100px;
 	${(props) => props.mobile && `padding-right: 10px;`}
 	.category,
-	.price-range {
+		.price-range {
 		display: flex;
 		flex-direction: column;
-		label:first-of-type {
-			margin-top: 28px;
-			${(props) => props.mobile && `margin-top: 5px`}
-		}
+
 		label {
 			text-transform: capitalize;
 			margin-bottom: 35px;
 			${(props) => props.mobile && `margin-bottom: 5px;`}
 		}
+
+		label:first-of-type {
+			margin-top: 28px;
+			${(props) => props.mobile && `margin-top: 5px`}
+		}
+
 		input {
 			margin-right: 20px;
 		}
+	}
+
+	h2 {
+		margin-top: 28px;
+		${(props) => props.mobile && `margin-top: 5px;`}
+		${(props) => props.mobile && `margin-bottom: 0px;`}
 	}
 
 	h2:first-of-type {
 		margin-top: -5px;
 		${(props) => props.mobile && `margin-bottom: 0px;`}
 	}
-	h2 {
-		margin-top: 28px;
-		${(props) => props.mobile && `margin-top: 5px;`}
-		${(props) => props.mobile && `margin-bottom: 0px;`}
-	}
+
 	hr {
 		width: 268px;
 	}

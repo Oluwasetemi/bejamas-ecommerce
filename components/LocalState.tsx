@@ -32,6 +32,7 @@ function CartStateProvider({
 	function openCart() {
 		setCartOpen(true);
 	}
+
 	const defaultValue = {
 		cartOpen,
 		toggleCart,
@@ -40,7 +41,6 @@ function CartStateProvider({
 		cart,
 		setCart,
 	};
-
 	return (
 		<LocalStateContext.Provider value={defaultValue}>
 			{children}
