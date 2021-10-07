@@ -1,6 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { MockedProvider } from '@apollo/react-testing';
+// import { jest } from '@jest/globals';
 import { render } from '@testing-library/react';
-import Home from '../index';
+import Home from '../pages/index';
 
 jest.mock('next/router', () => ({
 	useRouter() {
