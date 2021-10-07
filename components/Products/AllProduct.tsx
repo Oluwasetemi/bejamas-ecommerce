@@ -94,6 +94,10 @@ const AllProductStyles = styled.div`
 		align-items: center;
 	}
 
+	.container {
+		width: 100%;
+	}
+
 	h2 {
 		font-weight: 700;
 	}

@@ -1,6 +1,10 @@
 import Head from 'next/head';
+import useWindowSize from '../hooks/useWindowSize';
 
 export default function SEO() {
+	const { width } = useWindowSize();
+	let isMobile = width < 768;
+
 	return (
 		<Head>
 			<title>Bejamas_</title>
@@ -24,8 +28,12 @@ export default function SEO() {
 			/>
 
 			{/* this decreased the performance in lighthouse for mobile */}
-			<link rel="preconnect" href="https://images.pexels.com" />
-			<link rel="dns-prefetch" href="https://images.pexels.com" />
+			{!isMobile && (
+				<>
+					<link rel="preconnect" href="https://images.pexels.com" />
+					<link rel="dns-prefetch" href="https://images.pexels.com" />
+				</>
+			)}
 		</Head>
 	);
 }

@@ -44,8 +44,8 @@
 		// "**/*.ts",
 		// "**/*.tsx",
 		"__tests__/*.test.ts",
-		"__tests__/*.test.tsx"
-		// "cypress"
+		"__tests__/*.test.tsx",
+		"__tests__" // "cypress"
 	]
 	// "typeRoots": ["node_modules/@types"]
 }

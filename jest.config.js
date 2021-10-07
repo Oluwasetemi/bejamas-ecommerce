@@ -10,14 +10,14 @@ module.exports = {
 	],
 	coveragePathIgnorePatterns: ['<rootDir>/node_modules', 'cypress'],
 	coverageReporters: ['json', 'text', 'lcov', 'clover'],
-	coverageThreshold: {
-		global: {
-			branches: 90,
-			functions: 80,
-			lines: 90,
-			statements: 90,
-		},
-	},
+	// coverageThreshold: {
+	// 	global: {
+	// 		branches: 90,
+	// 		functions: 80,
+	// 		lines: 90,
+	// 		statements: 90,
+	// 	},
+	// },
 	moduleNameMapper: {
 		'\\.(css|less)$': 'identity-obj-proxy',
 		'^.+\\.(jpg|jpeg|png|gif|webp|svg)$': `<rootDir>/__mocks__/fileMock.js`,
