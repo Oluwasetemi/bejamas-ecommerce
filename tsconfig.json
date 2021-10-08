@@ -21,7 +21,6 @@
 			"cypress",
 			"@emotion/styled",
 			"@emotion/react",
-			"@emotion/css",
 			"@testing-library/react",
 			"@testing-library/jest-dom",
 			"@testing-library/cypress"

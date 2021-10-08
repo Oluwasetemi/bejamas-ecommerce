@@ -67,7 +67,7 @@ export const buttonStyles = css`
 	background-color: #000;
 	color: #fff;
 	border: 1px solid transparent;
-	transition: all 0.1s linear;
+	/* transition: all 0.1s linear; */
 
 	/* margin: 3rem 0; */
 	padding: 0.5rem 2.5rem;
@@ -75,10 +75,10 @@ export const buttonStyles = css`
 	letter-spacing: 2px;
 
 	&:hover {
-		box-shadow: 5px 5px 0 0 grey;
-		outline-offset: 1px;
+		/* box-shadow: 5px 5px 0 0 grey; */
+		/* outline-offset: 1px; */
 
 		/* border: 2px solid white; */
-		outline: 2px solid black;
+		/* outline: 2px solid black; */
 	}
 `;

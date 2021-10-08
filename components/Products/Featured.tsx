@@ -143,9 +143,18 @@ type AddToCartProp = {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function AddToCart({ product, style }: AddToCartProp) {
 	const all = useCart();
+	let openCart = all?.openCart;
 	let setCart = all?.setCart;
-	// @ts-ignore
-	const handleClick = () => setCart((prev) => [...prev, product]);
+
+	const handleClick = () => {
+		if (setCart) {
+			setCart((prev) => [...prev, product]);
+		}
+		// open the cart
+		if (openCart) {
+			openCart();
+		}
+	};
 	return (
 		<button onClick={handleClick} className="button" style={style}>
 			Add to Cart

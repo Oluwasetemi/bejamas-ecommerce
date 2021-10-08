@@ -14,6 +14,7 @@ const CartStyles = styled.div<CartStyleProp>`
 	margin-top: 103px;
 	margin-right: 50px;
 	padding: 10px 30px;
+	display: none;
 
 	/* position: relative; */
 	background: white;
@@ -29,12 +30,13 @@ const CartStyles = styled.div<CartStyleProp>`
 	transform: translateX(150%);
 	transition: all 0.3s;
 	box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
-	z-index: 5;
+	z-index: 15;
 	display: grid;
 	grid-template-rows: auto 1fr auto;
 	overflow: scroll;
 
 	${(props) => props.open && `transform: translateX(0);`}
+	${(props) => props.open && `display: block;`}
 	header {
 		margin-bottom: 0.05em;
 		text-align: right;

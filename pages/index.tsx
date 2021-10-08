@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/client';
-import { gql } from 'graphql-tag';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -7,98 +6,17 @@ import { AllProduct, Featured } from '../components/Products';
 import type { ProductType } from '../components/Products/OneProduct';
 import SEO from '../components/SEO';
 import { perPage } from '../config';
-
-const FEATURED_PRODUCT = gql`
-	query FEATURED_PRODUCT(
-		$limit: Int
-		$offset: Int
-		$cat: [String]
-		$priceUpper: Int
-		$priceLower: Int
-	) {
-		featured: products(where: { featured: { _eq: true } }) {
-			...productFragment
-		}
-		products: products(
-			limit: $limit
-			offset: $offset
-			where: {
-				category: { _in: $cat }
-				price: { _lt: $priceLower, _gt: $priceUpper }
-			}
-		) {
-			...productFragment
-		}
-		count: products_aggregate(
-			where: {
-				category: { _in: $cat }
-				price: { _lt: $priceLower, _gt: $priceUpper }
-			}
-		) {
-			aggregate {
-				count
-			}
-		}
-	}
-
-	fragment productFragment on products {
-		id
-		name
-		category
-		featured
-		bestseller
-		price
-		recommendations
-		description
-		size
-		image {
-			alt
-			src
-			width
-			height
-		}
-	}
-`;
+import usePriceRange from '../hooks/usePriceRange';
+import { categories } from '../utils/constant';
+import { FEATURED_PRODUCT } from '../utils/queries/query';
 
 const Home: NextPage = () => {
-	const [cat, setCat] = React.useState<string[]>([
-		'people',
-		'premium',
-		'pets',
-		'food',
-		'landmarks',
-		'cities',
-		'nature',
-	]);
-	const [priceRange, setPriceRange] = React.useState<string>('');
-
-	let priceLower: any;
-	let priceUpper: any;
-
-	if (priceRange === '') {
-		priceLower = 20000000;
-		priceUpper = 0;
-	}
-	if (priceRange === 'less than $20') {
-		priceLower = 2000;
-		priceUpper = 0;
-	}
-	if (priceRange === '$20-$100') {
-		priceUpper = 2000;
-		priceLower = 10000;
-	}
-	if (priceRange === '$100-$200') {
-		priceUpper = 10000;
-		priceLower = 20000;
-	}
-
-	if (priceRange === 'more than $200') {
-		priceLower = 20000000;
-		priceUpper = 20000;
-	}
-
 	const router = useRouter();
 	let { page = 1 } = router.query;
+
+	const [cat, setCat] = React.useState<string[]>(categories);
+	const [priceLower, priceUpper, priceRange, setPriceRange] = usePriceRange();
+	const [stateProduct, setProduct] = React.useState<ProductType[]>([]);
 
 	const { data, loading, error } = useQuery(FEATURED_PRODUCT, {
 		variables: {
@@ -109,11 +27,11 @@ const Home: NextPage = () => {
 			priceUpper: priceUpper,
 		},
 	});
-	const [stateProduct, setProduct] = React.useState<ProductType[]>([]);
 
 	// sorting
 	let products = data && data.products;
 	let pages: number;
+
 	React.useEffect(() => {
 		if (page > pages) {
 			router.push({

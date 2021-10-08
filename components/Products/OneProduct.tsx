@@ -6,9 +6,16 @@ import { AddToCart } from './Featured';
 
 const OneProductStyles = styled.div`
 	display: flex;
+	position: relative;
 	flex-direction: column;
 	margin-bottom: 37px;
 	width: 100%;
+
+	&:hover > .button {
+		${buttonStyles}
+		margin-top: -34px;
+		display: block;
+	}
 
 	img {
 		object-fit: cover;
@@ -17,9 +24,7 @@ const OneProductStyles = styled.div`
 	}
 
 	.button {
-		${buttonStyles}
-
-		margin-top: -30px;
+		display: none;
 	}
 
 	h3 {
@@ -76,7 +81,9 @@ export type ProductType = {
 };
 
 export default function OneProduct({ product }: { product: ProductType }) {
+	// const { hover, onMouseEnter, onMouseLeave } = useHover();
 	const image = (product.image && product.image) || product.image;
+
 	const cartDetails = {
 		name: product.name,
 		image: typeof image !== 'string' ? image.src : image,
